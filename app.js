@@ -1,10 +1,19 @@
-// product --> Object.prototype --> null
-const product = {
-  name: 'Influence'
-}
+const puzzleEl = document.querySelector('#puzzle')
+const guessesEl = document.querySelector('#guesses')
+const game1 = new Hangman('Cat', 2)
 
-Object.prototype.someNewMethod = () => 'This is the new function'
+puzzleEl.textContent = game1.getPuzzle()
+guessesEl.textContent = game1.remainingGuesses
+console.log(game1.status)
+//console.log(game1.getStatus())
 
-//hasOwnProperty
-console.log(product.someNewMethod())
-console.log(product)
+  window.addEventListener('keypress', function (e) {
+    const guess = String.fromCharCode(e.charCode)
+    game1.makeGuess(guess)
+    puzzleEl.textContent = game1.getPuzzle()
+    guessesEl.textContent = game1.remainingGuesses
+    console.log(game1.status)
+  })
+
+
+
