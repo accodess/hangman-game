@@ -15,13 +15,13 @@ console.log(game1.status)
 
 getPuzzle('2').then((puzzle) => {
   console.log(puzzle)
-}, (err) => {
+}).catch((err) => {
   console.log(`Error: ${err}`)
 })
 
-getCountry('MX').then((country) => {
+getCountry('UA').then((country) => {
   console.log(country)
-}, (err) => {
+}).catch((err) => {
   console.log(`Error: ${err}`)
 })
 

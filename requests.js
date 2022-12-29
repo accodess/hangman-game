@@ -1,35 +1,26 @@
-const getPuzzle = (wordCount) => new Promise((resolve, reject) => {
-  const request = new XMLHttpRequest()
-
-  request.addEventListener('readystatechange', (e) => {
-    if (e.target.readyState === 4 && e.target.status === 200) {    
-      const data = JSON.parse(e.target.responseText)   
-      resolve(data.puzzle)   
-    } else if (e.target.readyState === 4) {
-      reject('An error has taken place')
-    } 
-  })
-  
-  request.open('GET', `https://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
-  request.send()
-})
-
-
-
-const getCountry = (countryCode) => new Promise((resolve, reject) => {
-  const contryRequest = new XMLHttpRequest()
-  
-  contryRequest.addEventListener('readystatechange', (e) => {
-    if (e.target.readyState === 4 && e.target.status === 200) {
-      const data = JSON.parse(e.target.responseText)
-      const country = data.find((country) => country.cca2 === countryCode)
-      resolve(country.name.common)
-    } else if (e.target.readyState === 4) {
-      reject('Unable to fetch data')     
+const getPuzzle = (wordCount) => {
+  return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
+    if (response.status === 200) {
+      return response.json()
+    } else {
+      throw new Error('Unable to fetch the puzzle')
     }
+  }).then((data) => {
+    return data.puzzle
   })
-  
-  contryRequest.open('GET', 'https://restcountries.com/v3.1/all')
-  contryRequest.send()
-})
+}
+
+const getCountry = (countryCode) => {
+  return fetch('https://restcountries.com/v3.1/all').then((response) => {
+    if (response.status === 200) {
+      return response.json()
+    } else {
+      throw new Error('Unable to fetch the data')
+    }
+  }).then((data) => {
+    const country = data.find((country) => country.cca2 === countryCode)
+    return country.name.common
+  })
+}
+
 
