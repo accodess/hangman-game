@@ -1,5 +1,5 @@
 const getPuzzle = (wordCount) => {
-  return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
+  return fetch(`https://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
     if (response.status === 200) {
       return response.json()
     } else {
@@ -20,6 +20,16 @@ const getCountry = (countryCode) => {
   }).then((data) => {
     const country = data.find((country) => country.cca2 === countryCode)
     return country.name.common
+  })
+}
+
+const getLocation = () => {
+  return fetch('https://ipinfo.io/json?token=0a652d5f7565fe').then((response) => {
+    if (response.status === 200) {
+      return response.json()
+    } else {
+      throw new Error('Unable to fetch the data')
+    }
   })
 }
 
