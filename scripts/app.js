@@ -28,26 +28,3 @@ const startGame = async () => {
 document.querySelector('#reset').addEventListener('click', startGame)
 startGame()
 
-/*
-getPuzzle('2').then((puzzle) => {
-  console.log(puzzle)
-}).catch((err) => {
-  console.log(`Error: ${err}`)
-})
-
-
-getCountry('UA').then((country) => {
-  console.log(country)
-}).catch((err) => {
-  console.log(`Error: ${err}`)
-})
-
-
-getCurrentCountry().then((country) => {
-  console.log(country)
-}).catch((err) => {
-  console.log(err)
-})*/
-
-
-
