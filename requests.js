@@ -9,6 +9,12 @@ const getPuzzle = async (wordCount) => {
   }
 }
 
+const getCurrentCountry = async () => {
+  const location = await getLocation()
+  //const country = await getCountry(location.country)
+  return getCountry(location.country)
+}
+
 const getCountry = async (countryCode) => {
   const response = await fetch('https://restcountries.com/v3.1/all')
  
@@ -29,8 +35,9 @@ const getLocation = async () => {
     } else {
       throw new Error('Unable to get the current location')
     }
-
 }
+
+
 
 
 

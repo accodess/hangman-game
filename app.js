@@ -25,12 +25,11 @@ getCountry('UA').then((country) => {
   console.log(`Error: ${err}`)
 })
 
-getLocation().then((location) => {
-  //console.log(`You are currently in ${location.city}, ${location.region}, ${location.country}!`)
-  return getCountry(location.country)
-}).then((country) => {
+getCurrentCountry().then((country) => {
   console.log(country)
 }).catch((err) => {
-  console.log(`Error: ${err}`)
+  console.log(err)
 })
+
+
 
